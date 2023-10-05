@@ -1,0 +1,538 @@
+{% extends "salon/header.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid"
+>  
+<!--   ---------------------CAROUSEL------------------------------------------------------
+
+
+ -->
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500">
+  <ol class="carousel-indicators">
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'salon/images/pic1.jpg' %}" alt="First slide">
+      <div class="carousel-caption">
+        {% if pkgavl %}
+      <p style="font-size:50px;font-weight: 30;margin-top: -350px;">{{pkgavl}}</p> 
+       {% elif pkgnotavl %}
+       <p style="font-size:50px;font-weight: 30;margin-top: -350px;">{{pkgnotavl}}</p> 
+       {% elif formvalue %}
+       <p style="font-size:50px;font-weight: 30;margin-top: -350px;">Welcome {{user}} {{formvalue.service}} has been booked on {{formvalue.date}} at {{formvalue.time}}</p> 
+       {% else %}
+      <p style="font-size:50px;font-weight: 30;margin-top: -350px;">Need a Beauty Website</p>
+      <p class="text-center" style="font-size:20px; font-weight: 20;">Create just what you need for your Perfect Website. <br>Choose from a wide range of Elements & simply put them on your own ButterFly.</p>
+      <button class="newbutton1  btn rounded-pill">Read More</button>
+      {% endif %}
+    </div>
+    </div>
+    <div class="carousel-item " >
+     <img class="d-block w-100" src="{% static 'salon/images/pic2.jpg' %} "alt="Second slide">
+      <div class="carousel-caption">
+     <p style="font-size:50px;font-weight: 30;margin-top: -350px;">Best Services and Technicians</p>
+     </div>
+   </div>
+    <div class="carousel-item " >
+     <img class="d-block w-100" src="{% static 'salon/images/bg1.jpg' %}" alt="Third slide">
+      <div class="carousel-caption">
+     <p style="font-size:50px;font-weight: 30;margin-top: -350px;">Get Exciting Offers</p>
+     </div>
+   </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  <!--   <span class="sr-only">Previous</span>-->
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+  <!--  <span class="carousel-control-next-icon"></span>
+   <span class="sr-only">Next</span> -->
+  </a>
+</div>
+</div>
+
+
+<!-- -----------------------Welcome to spa lab ---------------------------------------------------------
+ -->
+ 
+<div id="lavishservices" class="text-center" style=" font-size: 40px; padding-top:80px; color:black;font-weight:90;">Welcome to Lavish Services
+<p style="font-family: 'Helvetica'; font-size: 20px; color:#fff;margin-bottom: 39px;">Experience the art of caring</p></div>
+
+
+<!-- --------------------------------------------------------CARDS--------------------------------------------
+ -->
+
+
+<div>
+  <div class="row">
+    <div class="col-sm-3">
+<div class=" newcard card text-center" style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'salon/images/box1.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Body Massage</h5>
+    <p class="card-text text-muted">We provide the best types of treatment and services at the most reasonable costs..</p>
+    <a href="#" class="newbutton btn btn-outline-light">See More</a>
+  </div>
+</div>
+</div>
+<div class="col-sm-3">
+<div class=" newcard card text-center" style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'salon/images/box2.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Bikini,Eye,Lip Mask</h5>
+<!--     <hr style="color:red;height:5px;width:60px;">
+ -->    <p class="card-text text-muted" style="padding-top:5px;">We provide the best types of treatment and services at the most reasonable costs..</p>
+    <a href="#" class="newbutton btn btn-outline-light">See More</a>
+  </div>
+</div>
+</div>
+
+
+<div class="col-sm-3">
+<div class="newcard card text-center" style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'salon/images/box3.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Body Polish</h5>
+    <p class="card-text text-muted">We provide the best types of treatment and services at the most reasonable costs..</p>
+    <a href="#" class="newbutton btn btn-outline-light">See More</a>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-3">
+<div class=" newcard card text-center" style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'salon/images/box4.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Bikini Wax</h5>
+    <p class="card-text text-muted">We provide the best types of treatment and services at the most reasonable costs..</p>
+    <a href="#" class=" newbutton btn btn-outline-light">See More</a>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ----------------------------------- EXPERT SECTION------------------------------------->
+
+
+<div id="meetexpert" class="container-fluid " style="padding-top: 70px; margin-top: 20px; margin-bottom: 40px;">
+
+ <div class="text-center"> <h2 class="text-center" style="color:white;padding-top:20px; font-weight: 100;font-size: 40px;">Meet Your Expert</h2>
+  <div style="margin-left: -39px;
+ margin-top: 17px"><p class="dot1 "> </p> <p class="dot1 "></p> <p class="dot1"></p>
+ </div>
+  <h3  style="color:white; font-weight: 100;font-size: 30px;padding-bottom: 10px;">The people of spa wellness behind us</h3>
+</div>
+<div class="d-flex justify-content-around">
+  <div class="d-flex flex-column">
+<div style="color:white; font-weight: 500;font-size: 50px;">1.&nbsp;Rosa Parks</div>
+<p style="color:white; font-weight: 300;font-size: 20px;margin-left:4rem">Beauty Therapist</p></div>
+<div class="d-flex flex-column">
+  <div style="color:white; font-weight: 500;font-size: 50px;">2.&nbsp;Keeth Sequiera</div>
+  <p style="color:white; font-weight: 300;font-size: 20px;margin-left:8rem">Masssage Expert</p></div>
+  <div class="d-flex flex-column">
+    <div style="color:white; font-weight: 500;font-size: 50px;">3.&nbsp;Menza Teresa</div>
+    <p style="color:white; font-weight: 300;font-size: 20px;margin-left:8rem">Skin Expert</p></div>
+    </div>
+<div class="row">
+<div class="col-sm-4 d-flex justify-content-around">
+<div class=" newcard card " style="width: 18rem;height:fit-content">
+  <img class="card-img-top" src="{% static 'salon/images/expert1.jpg' %}"  >
+  <div class="card-body">
+    <div style="width:100%;">
+      <ul class="social-network social-circle" style="margin-left: -100;">
+        <li><a href="#" class="icoFacebook" title="Facebook"><i style="color:blue;"class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#" class="icoTwitter" title="Twitter"><i style="color: #87CEEB;" class="fab fa-twitter"></i></a></li>
+        <li><a href="#" class="icoGoogle" title="Google +"><i style="color:red;" class="fab fa-google-plus"></i></a></li>
+        <li><a href="#" class="icoInstagram" title="Instagram"><i style="color:red;" class="fab fa-instagram"></i></a></li>
+
+        </ul>
+    </div>
+    </div>
+
+ </div>
+</div>
+
+
+ <div class="col-sm-4 d-flex justify-content-around">
+<div class=" newcard card " style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'salon/images/expert2.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <div class="col-md-12">
+      <ul class="social-network social-circle" style="margin-left: -100;">
+        <li><a href="#" class="icoFacebook" title="Facebook"><i style="color:blue;"class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#" class="icoTwitter" title="Twitter"><i style="color: #87CEEB;" class="fab fa-twitter"></i></a></li>
+        <li><a href="#" class="icoGoogle" title="Google +"><i style="color:red;" class="fab fa-google-plus"></i></a></li>
+        <li><a href="#" class="icoInstagram" title="Instagram"><i style="color:red;" class="fab fa-instagram"></i></a></li>
+
+        </ul>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-4 d-flex justify-content-around">
+<div class=" newcard card " style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'salon/images/expert3.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <div class="col-md-12">
+      <ul class="social-network social-circle text-muted" style="margin-left: -100;">
+        <li><a href="#" class="icoFacebook" title="Facebook"><i style="color:blue;"class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#" class="icoTwitter" title="Twitter"><i style="color: #87CEEB;" class="fab fa-twitter"></i></a></li>
+        <li><a href="#" class="icoGoogle" title="Google +"><i style="color:red;" class="fab fa-google-plus"></i></a></li>
+        <li><a href="#" class="icoInstagram" title="Instagram"><i style="color:red;" class="fab fa-instagram"></i></a></li>
+
+        </ul>
+    </div>
+    </div>
+
+ </div>
+</div>
+
+ </div>
+</div>
+</div>
+</div>
+</div>
+
+<!----------------------- PRODUCTS SECTION--------------------------------------->
+
+<br>
+
+<div id="products"class="text-center" style="font-family: 'Helvetica'; font-size: 30px; background-color:#F8F8FF;padding-top: 50px;">
+<h1 style="margin:10px;">Products We use</h1>
+ <div style="margin-left: -39px;
+ margin-top: 17px"> <p class="dot"></p>   <p class="dot"></p>  <p class="dot"></p></div>
+ {% if not productslist %}
+Currently No Products Available<br>
+  <img src="{% static 'salon/images/trishnabg.jpg' %}">
+  {% else %}
+
+<p style="font-family: Arial;font-size: 20px; margin-bottom: 8px;margin-top: -8px;">Experience the goodness </p>
+
+<div class="container">
+
+  <div class="row">
+    {% for product in productslist %}
+
+    <div class="col-md-4  m-b30 col-sm-4">
+      <div class="card" style="width: 23rem; ">
+        <h2 style="font-family: Arial;font-size: 20px; padding-top: 10px; ">Rs.{{product.price}}</h2>
+        <h2 class="text-uppercase" style="font-family: 'Cabin', sans-serif;font-size: 25px;  ">{{product.productname}}</h2>
+        <hr style="color:red;  border: 3px solid  #DC143C;"></hr>
+        <img class="card-img-top" src="{{product.productimg.url}}" alt="Card image cap" height="400" width="400">
+        <div class="card-body">
+        <a href="/addtocart/{{product.id}}" class=" newbutton1 btn rounded-pill">Add to  Cart</a>
+        </div>
+        
+     
+    </div>
+  </div>
+  {% endfor %}
+<!-- 
+    <div class="col-md-4  m-b30 col-sm-4">
+      <div class="card" style="width: 23rem;">
+         <h2 style="font-family: Arial;font-size: 20px; padding-top: 10px;">Rs 120</h2>
+        <h2 class="text-uppercase" style="font-family: 'Cabin', sans-serif;font-size: 25px;  ">Orchid Natural</h2>
+        <hr style="color:red;  border: 3px solid  #DC143C;"></hr>
+    <img class="card-img-top" src="{% static 'salon/images/product2.jpg' %}" alt="Card image cap" height="400" width="400">
+     <div class="card-body">
+   
+    <a href="#" class="newbutton1 btn rounded-pill">Select</a>
+    </div>
+    </div>
+  </div>
+
+    <div class="col-md-4  m-b30 col-sm-4">
+      <div class=" card" style="width: 23rem; ">
+         <h2 style="font-family: Arial;font-size: 20px; padding-top: 10px;">Rs 120</h2>
+        <h2  class="text-uppercase" style="font-family: 'Cabin', sans-serif;font-size: 25px;  ">Orchid Natural</h2>
+        <hr style="color:red;  border: 3px solid  #DC143C;"></hr>
+    <img class="card-img-top" src="{% static 'salon/images/product3.jpg' %}" alt="Card image cap" height="400" width="400">
+     <div class="card-body">
+   
+    <a href="#" class="newbutton1 btn rounded-pill">Select</a>
+    </div>
+    </div>
+  </div> -->
+</div>
+
+
+</div>
+
+</div>
+  {% endif %} 
+
+
+<!-----------------------PRICING AND PLANS-------------------------------------------->
+
+  <div id="pricing" class="text-center text-muted" style=" padding-top: 100px; background-color: #f8f8ff"><p style="font-family:Monaco;font-size: 40px;">Our Best  Offers</p>
+  <div><p class="dot"></p> <p class="dot"></p> <p class="dot"></p></div>
+  <h3 style="padding-bottom: 50px;">Choose your best plan and Package here</h3>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+      <div class="card" style="width: 22rem;">
+        {% if alltimeofferobject is None %}
+        <img src="{% static 'salon/images/trishnabg.jpg' %}">
+        {% else %}
+        <p class="card-img-top" style="background-color: #DC143C;color:white; font-size:30px;height:180px;">{{alltimeofferobject.offercategory}}</p>
+      <ul class="list-group list-group-flush" id="links">
+        <a  style="text-decoration: none;" href="/getall_alltimeoffer/{{alltimeofferobject.id}}"><li style="color:crimson; "class="list-group-item list1">{{alltimeofferobject.offername}}</li></a>
+      </ul>
+    <div class="card-body">
+      <a href="/getall_alltimeoffer" class="card-link newbutton1 btn rounded-pill" >See More</a>
+    </div>
+    {% endif %}
+  </div>
+  </div>
+
+  <div class="col-md-4">
+  <div class="card" style="width: 22rem;">
+    {% if seasonalofferobject is None %}
+    <img src="{% static 'salon/images/trishnabg.jpg' %}">
+    {% else %}
+    <p class="card-img-top" style="background-color: #DC143C;color:white; font-size:30px;height:180px;">{{seasonalofferobject.offercategory}}</p>
+    <ul class="list-group list-group-flush " id="links">
+      <a  style="text-decoration: none;" href="/getall_seasonaloffer/{{seasonalofferobject.id}}"><li style="color:crimson; "class="list-group-item list1">{{seasonalofferobject.offername}}</li></a>
+    </ul>
+    <div class="card-body">
+      <a href="/getall_seasonaloffer" class="card-link newbutton1 btn rounded-pill" >See More</a>
+    </div>
+    {% endif %}
+  </div>
+  </div>
+
+
+<div class="col-md-4">
+<div class="card" style="width: 22rem;">
+  {% if otherofferobject is None %}
+  <img src="{% static 'salon/images/trishnabg.jpg' %}">
+  {% else %}
+  <p class="card-img-top" style="background-color:  #DC143C;color:white; font-size:30px;height: 180px;">{{otherofferobject.offercategory}}</p>
+  <ul class="list-group list-group-flush" id="links">
+    <a  style="text-decoration: none;" href="/getall_otheroffer/{{otherofferobject.id}}"><li style="color:crimson; "class="list-group-item list1">{{otherofferobject.offername}}</li></a>
+ </ul>
+  <div class="card-body">
+    <a href="/getall_otheroffer" class="card-link newbutton1 btn rounded-pill" >See More</a>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-------------------------COUNTERS SECTION---------------------------------------->
+
+<div class="container-fluid counterclass">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="circle"><span class="counter">250</span></div>
+      <p class="circle-container-title">Clients</p>
+    </div>
+    <div class="col-md-3">
+      <div class="circle"><span class="counter">250</span></div>
+      <p class="circle-container-title">Therapist</p>
+    </div>
+    <div class="col-md-3">
+      <div class="circle"><span class="counter">250</span></div>
+      <p class="circle-container-title">Procedures</p>
+    </div>
+    <div class="col-md-3">
+      <div class="circle"><span class="counter ">250</span></div>
+      <p class="circle-container-title">Treatments</p>
+    </div>
+
+  </div>
+</div>
+
+
+<!------------------LATEST BLOG-------------------------------------------------------->
+
+<div id="whatsnew" class="text-center" style="padding-top: 80px; font-family:Bookman;background-color: #e6e6fa;font-weight:50; color:black; font-size:40px; "><p>What's New</p><div style="margin-top:-10px;"><p class="dot"> </p> <p class="dot"> </p> <p class="dot"></p></div>
+<p style="font-size: 20px; margin-top:-25px;" >We love to share our story & experience</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6" style="padding-left:90px;">
+      <div class="card" style="width: 36rem;">
+      <img src="{% static 'salon/images/blog1.jpg' %}">
+      <p style=" padding-top:6px;font-family: Bookman;font-size:30px;color:black; font-weight: 90;">The Latest SPA Craze </p>
+      <p class="text-muted" style="font-size:18px; font-family: Bookman;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id augue vitae odio accumsan.</p>
+      <p class="text-muted" style="font-size:12px; font-weight: 20;">Martin Smith | Nov 19, 2017</p>
+    </div>
+    </div>
+
+    <div class="col-md-6 text-center" >
+      <div class="card" style="width: 36rem;">
+      <img src="{% static 'salon/images/blog2.jpg' %}">
+      <p style=" padding-top:6px;font-family: Bookman;font-size:30px;color:black; font-weight: 90;">Invest in Healthy Tomorrow</p>
+      <p class="text-muted" style="font-size:18px; font-family: Bookman;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id augue vitae odio accumsan.</p>
+      <p class="text-muted" style="font-size:12px; font-weight: 20;">Martin Smith | Nov 19, 2017</p>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!------------------------ BOOK APPOINTMENT--------------------------------------->
+
+<form method="POST" action="/book/" name="bookform"  onsubmit="return validateForm()">
+  {% csrf_token %}
+<div id="bookappointment" style="padding-top:60px; font-family:bookman; font-size: 30px; font-weight:120;"><p>Book an Appointment</p>
+<div style="margin-top:3x;"><p class="dot"> </p> <p class="dot"> </p> <p class="dot"></p></div>
+</div>
+
+<div class="container bg-white text-muted bookform" style="padding-top:60px; width:1600px;">
+<div class="row">
+ 
+
+  
+           <div class="col-md-6 col-sm-6 col-xs-1 ">
+              <div class="form-group ">
+                <label style="margin-left: -478px;" >Available services</label>
+                <select class="form-select form-select-sm" name="service">
+                  {% if service1 %}
+                  <option value={{ service1 }} selected=True class="text-muted">{{ service1 }} </option>
+               
+                  {% else %}
+                  {{ service1 }}
+                  <option value=" ">Select </option>
+                  <option value="Hair Spa">Hair Spa</option>
+                  <option value="Facial">Facial</option>
+                  <option value="Hair Treatment">Hair Treatment</option>
+                  <option value="Skin Treatment">Skin Treatment</option>
+                  <option value="Pedicure">Pedicure/Manicure</option>
+                  <option value="Bridal Package">Bridal Package</option>
+                  {% endif %}
+                </select>
+              </div>
+         
+            </div>
+        
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="form-group">
+                <label style="margin-left: -208px;" >Date</label><br>
+                 <div ><input type="date" name="date" id="txtDate" style="margin-left: -90px;"></div>
+                    <!-- <input type='text' name='date' class="form-control" id="example1" /> -->
+            </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="form-group">
+                <label style="margin-left: -587px;">Staff</label>
+                <select class="form-select form-select-sm"  name="technician">
+                  <option value="Any">Select</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="form-group">
+            
+                <label style="margin-left:-202px;">Time</label>
+                <div>
+                <input type="time" style="margin-left: -121px;" id="txtTime"  name="time" >
+                </div>
+               </div>
+            </div>
+           
+            
+            
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <img src="{% static 'salon/images/bookappointment.jpg' %}" alt="">
+            </div>
+            
+            
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <br>
+    
+              <input type="submit" class="newbutton1 btn rounded-pill" value="Book Now" style="padding-top: 8px;" >
+            </div>
+           
+          </div>
+        </div>
+        
+    </form>
+
+  
+<!-- ---------------------- CONTACT US SECTION --------------------------------------->
+
+<div id="contactus" style="padding-top:20px;padding-bottom:20px; font-family:bookman; font-size: 40px; font-weight:120;"><p>Contact Us</p>
+  <div style="margin-top:-20px;"><p class="dot"> </p> <p class="dot"> </p> <p class="dot"></p></div></div>
+  
+  <div align="left" class="leftdiv"  style="margin-left:50px;"><h2>Trishna</h2>
+  <p class="text-muted" style="overflow-wrap: break-word; ">Address
+    Plot no 133, Shilpgiri Society,<br> RSC 28, <br>Gorai 2, borivali west
+    mumbai,<br> Maharashtra 40009 India</p>
+<p style="color:black;text-decoration: underline; padding-bottom: 10px;">info@example.com</p>
+<h2 >Connect with us</h2> 
+                        <ul class="social-network social-circle" style="padding-bottom:70px;">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i style="color:blue; font-size: 30px; "class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i style="color: #87CEEB; font-size: 30px;" class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i style="color:red; font-size: 30px; " class="fab fa-google-plus"></i></a></li>
+                            <li><a href="#" class="icoInstagram" title="Instagram"><i style="color:red; font-size: 30px; " class="fab fa-instagram"></i></a></li>
+
+                        </ul>
+  </div>
+
+<div align="center" class="centerdiv" style="margin-left: 380px; margin-top: -320px; "><img src="{% static 'salon/images/trishnabg.jpg' %}" ><div class="circleimage"> <img src="{% static 'salon/images/bg1.jpg' %}"><img src="{% static 'salon/images/bg2.jpg' %}" style="left:-10px;"><img src="{% static 'salon/images/bg3.jpg' %}" style="left:-50px;"><img src="{% static 'salon/images/pic1.jpg' %}" style="left:-50px;"></div>
+</div>
+
+<div align="right" class="rightdiv" style="margin-left: 75rem; margin-top:-320px;">
+
+{% if discountofferobject is None %}
+<img src="{%static 'salon/images/trishnabg.jpg' %}" width="400" height="350"  style="padding-bottom: 5px;" class="rounded-circle">
+{% else %}
+
+<h3 id="discounthead" style="margin-right:21px;">{{discountofferobject.offername}}</h3>
+  <div>
+    <img src="{{discountofferobject.offerimg.url}}" style="margin-left:7rem"><a href="/getall_discountoffer/{{discountofferobject.id}}" class="btn purchasebutton">Purchase Now</a></div><p class="text-muted"style="font-size: 18px;margin-right: 8px;">{{offer.offerdetails}}</p><p style="color:crimson;text-decoration: underline; margin-right:80px; font-size:20px;">Read More</p>
+  </div>
+{% endif %}
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+<!-- -------------- CODE FOR COUNTER----------------------------------------->
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>$(document).ready(function() {
+
+$('.counter').each(function () {
+$(this).prop('Counter',0).animate({
+Counter: $(this).text()
+}, {
+duration: 4000,
+easing: 'swing',
+step: function (now) {
+$(this).text(Math.ceil(now));
+}
+});
+});
+
+});</script>
+
+
+
+
+
+
+{% endblock content %}

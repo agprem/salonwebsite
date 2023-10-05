@@ -1,0 +1,81 @@
+
+{% extends "salon/header.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<form method="POST"  enctype="multipart/form-data" >
+  {% csrf_token %}
+<section class="h-250 bg-grey" >
+  <div class="container py-5 h-150" style="margin-top:30px;">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4 ">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block text-muted text-center">
+              <div id="cf">
+                <img
+                src="{% static 'salon/images/banner.png' %}"
+                alt="Sample photo"
+                class=" img-fluid bottom"
+                style="width:550px; height:640px; margin-left:-5px;">
+              
+              <img class=" img-fluid top "src="{% static 'salon/images/register.jpg' %}" style=" margin-left:-46px; margin-right:200px;width:1000px; height:640px;">
+            </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 ">
+                <h1 class="mb-5  text-center" style="font-weight: 90;color:crimson;margin-top:-25px;">Register</h1>
+                <div class="text-danger">
+                  {% if messages %}
+                {% for message in messages %}
+                Message-: {{message}}
+               {% endfor %}
+               {% endif %}
+               {% if uform.errors %}
+               Errors:{{uform.non_field_errors}}{% endif %}
+               </div>
+                
+                    <div class="form-outline text-muted ">
+                      <label class="form-label" for="form3Example1m" >Name</label>
+                      <input type="text" id="form3Example1m" class="form-control form-control-lg" name="name" required=True>
+                    </div>
+     
+                    <div class="form-outline text-muted">
+                       <label class="form-label" for="form3Example1n">Password</label>
+                      <input type="password" id="form3Example1n" class="form-control form-control-lg" name="password" required=True>
+                    </div>
+                
+                   <div class="form-outline mb-4 text-muted">
+                    <label class="form-label" for="form3Example8">Mobile</label>
+                    <input type="text" id="form3Example8" class="form-control form-control-lg" name="mobile"required=True>
+                  </div>
+
+                  <div class="form-outline mb-4 text-muted">
+                    <label class="form-label" for="form3Example9">Email ID</label>
+                    <input type="email" id="form3Example9" class="form-control form-control-lg"   name="email"  >
+                  </div>
+               
+                <br><br>
+
+                <div class="text-center">
+                 <input type= "submit" class=" newbutton1 btn rounded-pill" value="Register">
+                 <a href="/login" class=" newbutton1 btn rounded-pill" value="Login">Login</a>
+                 <br><br><small>If already a member Click Login</small>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>
+
+
+
+{% endblock content %}
+

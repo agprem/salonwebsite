@@ -1,0 +1,193 @@
+{% load static %}
+<html>
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<!-- ------- GOOGLE FONTS--------------------------------------------------------
+ --><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=Roboto+Slab&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+<link href="{% static 'salon/css/styles.css' %}" rel="stylesheet" style type="text/css">
+
+
+
+<!-- SCRIPT FOR SETTING DEFAULT DATE AS TODAY  AND TIME AS NOW -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(function(){
+  var dtToday = new Date();
+  console.log("date",dtToday)
+  var month = dtToday.getMonth() + 1;
+  var day = dtToday.getDate();
+  var year = dtToday.getFullYear();
+  var time = dtToday.getHours() + ":" + dtToday.getMinutes();
+  if(month < 10)
+      month = '0' + month.toString();
+  if(day < 10)
+      day = '0' + day.toString();
+  
+  var maxDate = year + '-' + month + '-' + day;
+  console.log("maxdate",maxDate)
+  console.log("currenttime",time)
+  // or instead:
+  // var maxDate = dtToday.toISOString().substr(0, 10);
+
+  $('#txtDate').attr('min', maxDate);
+  $('#txtDate').attr('value', maxDate);
+  $('#txtTime').attr('value',time) 
+
+  // textDate IS ID OF INPUT TYPE DATE AND txtTime IS ID OF INPUT TYPE TIME 
+
+});
+</script>
+<!-- -----------------------------------END OF DATE AND TIME SETTING--------------------------------------->
+
+
+</head>
+
+
+<!-- ----------------------NAVBAR------------------------------------------------------------------------------
+ fixed top class for fixing the navigation bar on top-->
+
+<nav class="navbar  fixed-top navbar-expand-lg navbar-light " style="background-color:black;">
+<a href="/">
+<img src="{% static 'salon/images/trishnabg.jpg' %}" width="150" height="80" style="margin-bottom:-10px;margin-top:-10px; border-radius: 20%;" alt="" id="logo-motion"> </a>
+
+<div style="color:cyan;">
+  <div>
+{% if messages or user.is_authenticated  %}
+    <!-- <div class="text-white" style="padding-left:50px;"> -->
+      
+      {% for message in messages %}
+      <div class="alert alert-info alert-dismissible " role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+          <!-- &times; is for making cross x -->
+          <!-- The .fade and .show classes adds a fading effect when closing the alert message: -->
+        
+      </div>
+      
+      {% endfor %}
+    </div>
+     <div class="align-left" style="margin-left:150px;" id="navbarNavDropdown ">
+{% else %}
+
+  <div class="collapse navbar-collapse justify-content-center px-1" style="margin-left: 100px;" id="navbarNavDropdown ">
+{% endif %}
+
+
+<ul class="navbar-nav " id="links">
+      <li class="nav-item active">
+        <a class="nav-link" href="/" >Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#pricing">Special Offers</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#bookappointment">Book Appointment</a>
+      </li>
+
+<!--       ----------------copy from here ------------------------------------------------>
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="dropdown">
+            <a class="dropdown-item" href="#lavishservices">Lavish Services</a>
+            <a class="dropdown-item" href="#meetexpert">Meet Our Experts</a>
+            <a class="dropdown-item" href="#products">Products we use</a>
+        </div>
+      </li>
+
+<!--       --------------------------------------------till here for dropdown----------------------->
+
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Know us More
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"  id="dropdown">
+            <a class="dropdown-item" href="#whatsnew" >What's New</a>
+            <a class="dropdown-item" href="#contactus">Contact us</a>
+          </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" style="color:#fff" href="/"></a>
+      </li>
+
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+
+      {% elif user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+       </li>
+      {% endif %}
+     
+
+    <div>      
+      <a href="/showcart"  style="margin-left: 35rem;">
+        <i style="font-size:15px;" class="fa fa-cart-plus"></i>
+        {% if request.session %}  <div  style="font-size:10px;" class ="badge bg-info">{{ request.session.cartitemnos }}</div>
+        {% else %}
+        <div  style="font-size:6px;" class ="badge bg-danger">0</div>
+        {% endif %}
+      </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+    </div>
+    <p style="margin-top:6px;color:yellow;font-size:13px;">{% if user.is_authenticated %}
+    
+      Welcome: {{user.name | upper}}
+     {% endif %}</p>
+
+  </ul>
+  
+  </div> 
+  </nav>
+
+
+
+ <body>
+  
+
+{% block content %}{% endblock %}
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+
+
+<!-- VALIDATION FOR SERVICE FIELD IN BOOKAPPOINTMENT -->
+<script>
+  function validateForm() {
+  let x = document.forms["bookform"]["service"].value;
+  console.log("validate js")
+  if (x == " ") {
+    alert("Service is required");
+    console.log("service is blank")
+    return false;
+  }
+}
+</script>
+
+<!-- END OF  VALIDATION------------------------------------------------>
+
+</body>
+</html>

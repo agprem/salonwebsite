@@ -1,0 +1,65 @@
+{% extends "salon/header.html" %}
+{% load static %}
+{% block content %}
+
+
+<!-- upper part from header.html ------------------------>  
+<form method="POST">
+  {% csrf_token %}
+<section class="h-250 bg-grey" >
+  <div class="container py-5 h-150" style="margin-top:10px;">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-2 ">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block text-muted text-center">
+              <div id="cf">
+              <img src="{% static 'salon/images/login.jpg' %}"
+                alt="Sample photo"
+                class="img-fluid top"
+                style="padding-right: -200px; width:1000px; height:420px;"/>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 ">
+                <h1 class="mb-5  text-center" style="font-weight: 90;color:crimson;margin-top:-25px;">Login</h1>
+              <div class="text-danger">
+              {% if messages %}
+              {% for message in messages %}
+              Message-: {{message}}
+              {% endfor %}
+              {% endif %}
+              </div>
+            
+            <div class="form-outline text-muted">
+                <label class="form-label">Email/ Mobile</label>
+                <input type="text" id="form3Example1m" class="form-control form-control" name="username" required>
+            </div>
+                
+           <div class="form-outline text-muted">
+               <label class="form-label" for="form3Example1n">Password</label>
+                <input type="password" id="form3Example1n" class="form-control form-control-lg" name="password" required>
+           </div>
+                    
+           <br><br>
+           
+           <div style="padding-left: 50px;">
+              <input type="submit" class=" newbutton1 btn rounded-pill" value="Login">
+              <a href="/register/">Register Now</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <small class="text-muted" style="font-size:15px;font-style: oblique;">If not Registered Click here</small>
+            </div>
+
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </section>
+
+
+
+{% endblock content %}

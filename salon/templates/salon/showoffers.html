@@ -1,0 +1,85 @@
+{% extends "salon/header.html" %}
+{% block content %}
+{% load static %}
+<form method="POST" enctype="multipart/form-data" action="">
+  {% csrf_token %}
+
+  {% if user %}
+
+
+<section class="py-5 header">
+  
+    <div class="container-fluid py-5 px-5 newcontainer" >
+        <header class="text-center mb-5 pb-5 text-white"></header>
+
+
+        
+<!---------------------------------------- DIFFERENT OFFERS ----------------------------------->
+
+{% if offerdata %}
+
+<h4 class="font-italic text-center"style= "font-family: 'Roboto Slab', serif;font-size: 20px; color:#fff; margin-top:-100px;">{{offerdata.offercategory}}</h4>
+{% endif %}
+
+                    <div class="tab-pane fade shadow rounded bg-white show active  p-5">
+                      {% if user.is_authenticated %}
+                    <img  class="rounded-circle account-img" src="{{user.profile.image.url}}" style="margin-top:-90px; margin-left:-50px; width:120px;height:120px;"> 
+                      {% else %}
+                      
+                      <img  class="rounded-circle account-img" src="{% static 'salon/images/default.jpg' %}" style="margin-top:-90px; margin-left:-50px; width:120px;height:120px;"> 
+                      {% endif %}
+                      <div class="container">
+                      <div class="row">
+                        <div class="card" >
+                          <div class="table-responsive" >
+                          <!-- <div class="card-header">Appointments Record</div> -->
+                         
+
+                          {% if offerlist %}
+                          <table class="table text-muted">
+                          <thead>
+                            <tr>
+                            <th>Offer ID</th>
+                            <th>Offer</th>
+                            <th>Detail</th>
+                            <th>Image</th>
+                            <th>Expiry</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Action</th>
+                            </tr>
+                            </thead>
+                           {% for offer in offerlist %}
+                            <tbody>
+                                
+                        
+                                <tr>
+                                <td>{{offer.id}}</td>
+                                <td>{{offer.offername}}</td>
+                                <td>{{offer.offerdetail}}</td>
+                                <td><img src="{{offer.offerimg.url}}" width="100" height="100"></td>
+                                <td>{{offer.offerexp}}</td>
+                                <td>{{offer.price}}</td>
+                                <td>{{offer.discount}}</td>
+                                <td><a href="{{request.path}}{{offer.id}}" class= "btn btn-danger" value="Book Now" style="padding-top:2px;">Book Now</a></td >
+                        
+                            {% endfor %}
+                            </tr>
+                            
+                          </tbody>
+                          {% endif %}
+                          
+                        </table>
+                      </div><!-- DIV OF TABLE RESPONSIVE -->
+                       </div>  <!---------------CARD DIV CLOSED-------->
+                        </div><!-- ROW DIV CLOSED-->
+                      </div> <!--CONTAINER DIV CLOSED-->
+                      </div><!--TABPANE DIV CLOSED-->
+                  </div> <!-------- CONTAINER FLUID CLOSED DIV OF THIS APPOINTMENTS CLOSED-->
+                    
+                    
+</section>
+</form>
+   {% endif %}
+ {% endblock content %}
+

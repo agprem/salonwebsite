@@ -1,0 +1,96 @@
+{% extends "salon/header.html" %}
+{% load static %}
+{% block content %}
+<section class="py-5 header">
+{% if user %}
+<div class="container-fluid py-5 px-5 newcontainer" >
+
+    <header class="text-center mb-5 pb-5 text-white"></header>
+    {% if user.is_authenticated %}
+    <img  class="rounded-circle account-img"src="{{user.profile.image.url}}" style="margin-top:-90px; margin-left:-40px; width:130px;height:130px;"> 
+    {% else %}
+    <img  class="rounded-circle account-img" src="{% static 'salon/images/default.jpg' %}" style="margin-top:-90px; margin-left:-50px; width:120px;height:120px;"> 
+    {% endif %}
+    <form method="POST" action='/book/' name="bookform"  onsubmit="return validateForm()">
+    {% csrf_token %}
+    <div style=" font-size:30px;margin-top:-150px; " class="text-center" ><p style="color:#fff;font-family:bookman; font-size: 30px;font-weight:120;">Book an Appointment</p>
+    <div ><p class="dot1"> </p> <p class="dot1"> </p> <p class="dot1"></p></div>
+    </div>
+                          
+    <div class="container bg-white text-muted bookform" style="padding-top:60px; width:1600px;">
+        <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-1 ">
+            <div class="form-group ">
+            <label style="margin-left: 15px;" >Available services</label>
+            <select class="form-select form-select-sm" name="service">
+            {% if service1 %}
+            <option value={{ service1|cut:" "}} selected=True class="text-muted">{{ service1|cut:" "}} </option>
+            {% else %}
+            <option value=" ">Select </option>
+            <option value="Hair Spa">Hair Spa</option>
+            <option value="Facial">Facial</option>
+            <option value="Hair Treatment">Hair Treatment</option>
+            <option value="Skin Treatment">Skin Treatment</option>
+            <option value="Pedicure">Pedicure/Manicure</option>
+            <option value="Bridal Package">Bridal Package</option>
+            {% endif %}
+            </select>
+            </div>
+        </div> 
+                                  
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+            <label style="margin-left: 150px;" >Date</label><br>
+            <div ><input type="date" name="date" id="txtDate" style="margin-left: 150px;"></div>
+            </div>
+        </div>
+                          
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+            <label style="margin-left: 10px;">Staff</label>
+            <select class="form-select form-select-sm"  name="technician">
+            <option value="Any">Select</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            </select>
+            </div>
+        </div>
+                          
+                                      
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+            <label style="margin-left:150px;">Time</label>
+            <div><input type="time" style="margin-left: 150px;" id="txtTime"  name="time" ></div>
+            </div>
+        </div>
+                                     
+                                      
+                                      
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'salon/images/bookappointment.jpg' %}" alt="">
+        </div>
+                                      
+                                      
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <br><br><br>
+            <input type="submit" class="newbutton1 btn rounded-pill" value="Book Now" style="padding-top: 8px;" >
+        </div>
+                                     
+                                
+    </div> <!-- ROW DIV TAG CLOSED-->
+    </div> <!-- CONTAINER DIV TAG CLOSED-->
+                                  
+    </form>
+                          
+                                                
+                        
+                      
+                    
+
+
+{% endif %}                      
+ 
+</div> <!-- CONTAINER FLUID TAG CLOSED-->
+</section>
+{% endblock content %}

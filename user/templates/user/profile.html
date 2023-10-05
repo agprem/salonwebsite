@@ -1,0 +1,223 @@
+{% extends "salon/header.html" %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data" action="">
+  {% csrf_token %} 
+  {% if user %}
+<section class="py-5 header">
+   <div class="container-fluid py-5 px-5 newcontainer" >
+        <header class="text-center mb-5 pb-5 text-white"></header>
+        <div class="row" style="margin-top: -100px;">
+            <div class="col-md-3">
+                <!-- Tabs nav -->
+                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <img  class="rounded-circle account-img"src="{{user.profile.image.url}}" style="margin-top:-15px; margin-bottom: 50px;margin-left:20px; width:200px;height:200px;"> 
+                  <h5 class="text-muted" style="padding-top:5px; padding-left:30px;font-weight: 90;font-family: 'Roboto Slab', serif;color:black;margin-top:-45px;margin-bottom: 30px;"> Welcome {{user}} </h5>
+                      <a class="nav-link active mb-3 p-3 shadow " id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home">
+                          <i class="fa fa-user-circle-o mr-2"></i>
+                          <span class="font-weight-bold small text-uppercase" style="color:crimson ;font-size:14px;">Personal information</span></a>
+
+                      <a class="nav-link mb-3 p-3 shadow " id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                        <i class="fa fa-calendar-minus-o mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase" style="color:crimson ;font-size:14px;">Bookings</span></a>
+                </div>
+            </div>
+
+            
+            
+        
+            <div class="col-md-9 ">
+                <!-- Tabs content -->
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <h4 class="font-italic mb-4 text-center" style="  font-family: 'Roboto Slab', serif;font-size: 20px; margin-top: -40px;">Personal information</h4>
+                        
+                        <div class="text-danger ">
+                          {% if messages %}
+                          {% for message in messages %}
+                          {{message}}
+                          {% endfor %}
+                          {% endif %}
+                          {% if formerrors %}
+                          {{formerrors}}
+
+                          {% endif %}
+                        </div>
+                    
+                      <div class="form-outline text-muted">
+                        <label class="form-label" for="form3Example1m">Name</label>
+                        <input type="text" id="form3Example1m" class="form-control" name="name" value={{user.name}}  >
+                      </div>
+                    
+                
+                     <div class="form-outline mb-4 text-muted">
+                      <label class="form-label" for="form3Example8">Mobile</label>
+                      <input type="text" id="form3Example8" class="form-control" name="mobile" value={{user.mobile}}  >
+                    </div>
+
+
+                    <div class="form-outline mb-4 text-muted">
+                      <label class="form-label" for="form3Example9">Email-ID</label>
+                      <input type="text" id="form3Example9" class="form-control"  name="email" value={{user.email}} >
+                    </div>
+                
+                  <div class="form-outline mb-4 text-muted">
+                    <label class="form-label" for="form3Example97">D.O.B</label>
+                    <input type="date" id="form3Example97" class="form-control" name="dob" value= {{user.profile.dob|date:"Y-m-d"  }} >
+                  </div>
+                   
+                  <div class="form-outline mb-4 text-muted">
+                    <label class="form-label" for="form3Example97">Address</label>
+                    <input type= "text" id="form3Example97" class="form-control " name="address" value={{user.profile.address}} >
+                  </div>
+                  
+                  <div class="form-outline mb-4 text-muted">
+                    <label class="form-label" for="form3Example97">Current Image: &nbsp; {{user.profile.image.url}}</label>
+                    <br><label class="form-label" for="form3Example97">Change Image </label>
+                    <input  type="file" id="form3Example12" name="image"  value={{user.profile.image.url}} >
+                  </div>
+                  
+                
+              
+                 <div class="text-center">
+                    <input  type="submit" class=" newbutton1 btn rounded-pill"  style="padding-top:2px; font-size:14px;" value="Save" >&nbsp;&nbsp;
+                    <button type="button" class=" newbutton1 btn rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" style="padding-top:2px; font-size:14px;">Update Password</button>
+                </div>
+              
+              
+              </form>
+              </div> <!--TAB PANE DIV CLOSED-->
+                         
+ 
+<!-- -----------------  START OF MODAL FORM FOR UPDATING PASSWORD----------------------->
+
+<form method="POST" action="/updatepassword/">
+  {% csrf_token %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel" style="font-family: 'Roboto Slab', serif;"> Update Password</h5>
+      <button type="button" class="btn btn-danger close" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-muted">
+      <div class="container">
+        <form>
+          
+          
+          <div class="form-group">
+            <label>Old Password</label>
+            <input type="password" class="form-control" name="oldpwd" required=True >
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password" class="form-control" name="newpwd" formControlName="newpwd" required=True>
+          </div>
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" class="form-control" name="cfmpwd" formControlName="cfmpwd" required=True>
+          </div>
+        </form>
+        
+        
+      </div>
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-danger" style="padding-top:-5px;" value="Update" >
+    </div>
+  
+  </div>
+</div>
+</div>
+</form>
+
+{% endif %}
+
+
+
+<!-- -----------------  END OF MODAL FORM FOR UPDATING PASSWORD----------------------->
+
+
+<!----------------------------------------APPOINTMENTS   HISTORY ----------------------------------->
+
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <h4 class="font-italic mb-4 text-center"style=  "font-family: 'Roboto Slab', serif;font-size: 20px;">Appointments History</h4>
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <div class="card" style="margin-left: 50px; width:700px;">
+                              <div class="table-responsive" >
+                          <!-- <div class="card-header">Appointments Record</div> -->
+                          {% if bookings %}
+                          <table class="table text-muted text-sm">
+                          <thead>
+                            <tr>
+                            <th>Appt no.</th>
+                            <th>Service/Package</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                            </tr>
+                            </thead>
+                           
+                            {% for booking in bookings|dictsortreversed:"id"  %}
+                             
+                            <tbody>
+                         
+                            <tr>
+                            <td>{{booking.id}}</td>
+                            <td>{{booking.service}}</td>
+                            <td>{{booking.date}}</td>
+                            <td>{{booking.time}}</td>
+                            <td>Rs.{{booking.price}}</td>
+                            
+                            {% if booking.aptdone %}
+                          
+                            <td><a href="/rebook/{{booking.id}}" class="btn btn-primary">Rebook</a></td>
+                            {% else %}
+                          
+                            
+                            <td><a href="/cancelapt/{{booking.id}}"class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel the appointment')">Cancel</a></td>
+                  
+                            
+                            {% endif %}
+                            {% endfor %}
+                            </tr>
+                           </tbody>
+                          
+                        </table>
+
+                        
+                      </div><!-- DIV OF TABLE RESPONSIVE -->
+                      {% else %}
+                      <div class="text-center text-muted">
+                      No appointments Scheduled for {{user}}
+                      {% endif %}
+                      </div>
+                       </div>  <!---------------CARD DIV CLOSED-------->
+                        </div><!--COL MD9 CLOSED-->
+                        </div><!--ROW DIV CLOSED-->
+                      </div><!--CONTAINER DIV CLOSED-->
+                    </div> <!--TABPANE DIV CLOSED--   ALL DIVS OF APT HISTORY CLOSED -->
+                  
+                  
+                  
+                    
+                    
+            </div><!--DIV OF TAB CONTENT CLOSED IN PERSONAL INFO SECTION -->
+            </div> <!------ DIV OF COL MD-3 CLOSED  PERSONAL INFOO SECTION-->
+
+          </div><!--DIV ROW CLOSED-->
+        </div> <!--- DIV OF CONTAINER FLUIDSECTION CLOSED -->
+    
+</section>
+
+
+
+ {% endblock content %}
+
